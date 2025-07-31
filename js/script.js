@@ -61,11 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(contactForm);
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            const subject = document.getElementById('company').value;
-            const message = document.getElementById('message').value;
+             const message = document.getElementById('message').value;
 
             // Basic validation
-            if (!name || !email || !subject || !message) {
+            if (!name || !message) {
                 showNotification('Please fill in all fields', 'error');
                 return;
             }
@@ -78,17 +77,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Simulate form submission
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalText = submitButton.innerHTML;
-
+            contactForm.submit()
             submitButton.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending...';
             submitButton.disabled = true;
-
-            // Simulate API call
-            setTimeout(() => {
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-                contactForm.reset();
-                showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-            }, 2000);
+            submitButton.innerHTML = originalText
+            showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
+            contactForm.reset();
         });
     }
 
